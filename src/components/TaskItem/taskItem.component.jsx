@@ -3,17 +3,28 @@ import { useSelector } from 'react-redux';
 
 import { getSubtasksOfTask } from '../../redux/task/task.selectors';
 
-const TaskItem = ({task}) => {
+import './taskItem.styles.scss';
+
+const TaskItem = ({task, created}) => {
 
   const subtasks = useSelector( getSubtasksOfTask(task) )
 
   return (
     <div>
-      <h3>{task.title}</h3>
+      <span className={created ? 'created' : ''}>{task.title}</span>
       <ul>
         {
-          subtasks.map( 
-            subtask => <li key={subtask.title}>{subtask.title}</li>)
+          subtasks.map( subtask => {
+            const task = subtask.task;
+            const originalSub = created && subtask.created; 
+
+            return(
+              <li key={task.title}>
+                <TaskItem 
+                  created={originalSub} task={task} />
+              </li>
+            )
+          })
         }
       </ul>
     </div>

@@ -5,7 +5,9 @@ const INITIAL_TASKS = {
       title: 'buy groceries',
       isComplete: false,
       parent: 0,
-      subtasks: [2]
+      subtasks: [
+        {id: 2, created: true }
+      ]
     },
     2: {
       id: 2,
@@ -19,7 +21,10 @@ const INITIAL_TASKS = {
       title: 'eat bananas',
       isComplete: false,
       parent: 0,
-      subtasks: [1, 2]
+      subtasks: [
+        {id: 1, created: false},
+        {id: 2, created: false},
+      ]
     }
   },
   rootTaskIds: [1, 3]

@@ -14,7 +14,7 @@ const Homepage = () => {
     <h1>All Tasks</h1>
       {
         rootTasks.map( 
-          task => <TaskItem key={task.title} task={task} /> )
+          task => <TaskItem key={task.title} created={true} task={task} /> )
       }
     </div>
   )
