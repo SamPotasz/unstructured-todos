@@ -8,6 +8,14 @@ import {
 
 import { addNewRootItem, addNewSubitem } from '../../redux/task/task.actions';
 
+/**
+ * Functional component which adds an item to the list.
+ * TODO: Wrap this to make it a pure UI component.
+ * As is, adds a new subitem or new root item based on whether or not
+ * it is given a @parentId parameter.
+ * 
+ * Shows or hides the submit button based on whether there's text input.
+ */
 const NewTaskInput = ({parentId}) => {
 
   const [ inputString, setInput ] = useState('');
@@ -20,11 +28,9 @@ const NewTaskInput = ({parentId}) => {
   }
 
   const onSubmit = () => {
-    console.log('on submit!');
 
     if( parentId )
     {
-      console.log('adding new subitem')
       dispatch( addNewSubitem({ parentId, title: inputString }) )
     }
     else {
