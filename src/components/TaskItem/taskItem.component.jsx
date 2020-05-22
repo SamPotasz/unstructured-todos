@@ -2,8 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { getSubtasksOfTask } from '../../redux/task/task.selectors';
+import { addNewSubitem } from '../../redux/task/task.actions';
 
 import './taskItem.styles.scss';
+import NewTaskInput from '../NewTaskInput/newTaskInput.component';
 
 const TaskItem = ({task, created}) => {
 
@@ -26,7 +28,9 @@ const TaskItem = ({task, created}) => {
             )
           })
         }
+        { created && <li><NewTaskInput parentId={ task.id } /></li> }
       </ul>
+      
     </div>
   )
 }

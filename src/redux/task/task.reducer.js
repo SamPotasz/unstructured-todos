@@ -1,3 +1,5 @@
+import { TASK_ACTION_TYPES } from "./task.types";
+
 const INITIAL_TASKS = {
   allTasks: {
     1: {
@@ -30,8 +32,49 @@ const INITIAL_TASKS = {
   rootTaskIds: [1, 3]
 }
 
-const taskReducer = ( state = INITIAL_TASKS ) => {
-  return state;
+const taskReducer = ( state = INITIAL_TASKS, action ) => {
+  const uid = Date.now();
+  
+  switch( action.type ) {
+
+    case TASK_ACTION_TYPES.ADD_ROOT_ITEM:
+      return {
+        ...state,
+        allTasks: {
+          ...state.allTasks,
+          [uid]: {
+            id: uid,
+            title: action.payload,
+            isComplete: false,
+            parent: 0,
+            subtasks: []
+          }
+        },
+        rootTaskIds: [ ...state.rootTaskIds, uid ]
+      }
+    case TASK_ACTION_TYPES.ADD_NEW_SUBITEM: 
+      let { parentId, title } = action.payload;
+      console.log(state.allTasks[parentId].subtasks)
+      return {
+        ...state,
+        allTasks: {
+          ...state.allTasks,
+          [uid]: {
+            id: uid,
+            title: title,
+            isComplete: false,
+            parent: parentId,
+            subtasks: [],
+          },
+          [parentId]: {
+            ...state.allTasks[parentId],
+            subtasks: [...state.allTasks[parentId].subtasks, {id: uid, created: true}]
+          }
+        }
+      }
+    default: 
+      return state;
+  }
 };
 
 export default taskReducer;
