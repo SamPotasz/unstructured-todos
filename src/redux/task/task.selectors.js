@@ -24,5 +24,9 @@ export const getSubtasksOfTask = task => createSelector(
     task.subtasks ? task.subtasks.map( subtaskObj => 
       ({ created: subtaskObj.created,
         task: allTasks[ subtaskObj.id ]}) ) : []
-  
+)
+
+export const getSingleTask = taskId => createSelector(
+  [selectTaskData],
+  allTasks => { console.log(allTasks); console.log(taskId); return allTasks[taskId] }
 )
