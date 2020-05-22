@@ -15,6 +15,9 @@ import { addNewRootItem, addNewSubitem } from '../../redux/task/task.actions';
  * it is given a @parentId parameter.
  * 
  * Shows or hides the submit button based on whether there's text input.
+ * 
+ * TODO: Turn this into a select component to allow adding existing 
+ *  items as children of other nodes. Although, this is shown in the INITIAL_DATA
  */
 const NewTaskInput = ({parentId}) => {
 

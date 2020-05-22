@@ -7,6 +7,12 @@ import './taskItem.styles.scss';
 import NewTaskInput from '../NewTaskInput/newTaskInput.component';
 import TaskTitle from '../TaskTitle/taskTitle.component';
 
+/**
+ * Displays a task item and its subitems.
+ * If this is the place where the item was originall created,
+ * we show a field to add more sub-items.
+ * We don't want to clutter the screen with tons of inputs.
+ */
 const TaskItem = ({task, created}) => {
 
   const subtasks = useSelector( getSubtasksOfTask(task) )
